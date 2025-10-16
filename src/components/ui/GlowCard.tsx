@@ -30,7 +30,10 @@ const GlowCard: React.FC<GlowCardProps> = ({
     const card = cardRef.current;
     if (!card) return;
 
+    const isMobile = () => window.innerWidth < 768;
+
     const syncPointer = (e: PointerEvent) => {
+      if (isMobile()) return;
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -42,25 +45,44 @@ const GlowCard: React.FC<GlowCardProps> = ({
     };
 
     const handlePointerEnter = () => {
+      if (isMobile()) return;
       card.style.setProperty('--bg-spot-opacity', '0.1');
       card.style.setProperty('--border-spot-opacity', '1');
       card.style.setProperty('--border-light-opacity', '1');
     };
 
     const handlePointerLeave = () => {
+      if (isMobile()) return;
       card.style.setProperty('--bg-spot-opacity', '0');
       card.style.setProperty('--border-spot-opacity', '0');
       card.style.setProperty('--border-light-opacity', '0');
     };
 
-    card.addEventListener('pointermove', syncPointer);
-    card.addEventListener('pointerenter', handlePointerEnter);
-    card.addEventListener('pointerleave', handlePointerLeave);
+    if (!isMobile()) {
+      card.addEventListener('pointermove', syncPointer);
+      card.addEventListener('pointerenter', handlePointerEnter);
+      card.addEventListener('pointerleave', handlePointerLeave);
+    }
+
+    const handleResize = () => {
+      if (isMobile()) {
+        card.removeEventListener('pointermove', syncPointer);
+        card.removeEventListener('pointerenter', handlePointerEnter);
+        card.removeEventListener('pointerleave', handlePointerLeave);
+      } else {
+        card.addEventListener('pointermove', syncPointer);
+        card.addEventListener('pointerenter', handlePointerEnter);
+        card.addEventListener('pointerleave', handlePointerLeave);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
 
     return () => {
       card.removeEventListener('pointermove', syncPointer);
       card.removeEventListener('pointerenter', handlePointerEnter);
       card.removeEventListener('pointerleave', handlePointerLeave);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
