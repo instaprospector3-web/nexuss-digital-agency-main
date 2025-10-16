@@ -36,7 +36,7 @@ const About = () => {
           {/* Left Content */}
           <div className="slide-up relative z-10">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Quem somos a <span className="gradient-text">Nexus</span>
+              Quem somos <span className="gradient-text">nós</span>
             </h2>
             
             <div className="space-y-6 text-foreground/80">
