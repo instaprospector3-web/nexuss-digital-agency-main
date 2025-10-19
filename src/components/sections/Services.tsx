@@ -7,8 +7,10 @@ import {
   Lightbulb,
 } from "lucide-react";
 import { GlowCard } from "@/components/ui/GlowCard";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Services = () => {
+  const isMobile = useIsMobile();
   const services = [
     {
       icon: Code,
@@ -97,22 +99,17 @@ const Services = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div
-              key={service.title}
-              className="slide-up group"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <GlowCard
-                customSize={true}
-                className="h-full p-8"
-              >
+          {services.map((service, index) => {
+            const cardContent = (
+              <>
                 <div className="w-14 h-14 rounded-xl bg-gradient-primary flex items-center justify-center mb-6 hover:group-hover:scale-110 transition-transform">
                   <service.icon className="w-7 h-7 text-white" />
                 </div>
 
                 <h3 className="text-2xl font-bold mb-3">{service.title}</h3>
-                <p className="text-foreground/70 mb-6">{service.description}</p>
+                <p className="text-foreground/70 mb-6">
+                  {service.description}
+                </p>
 
                 <ul className="space-y-2">
                   {service.features.map((feature) => (
@@ -125,9 +122,27 @@ const Services = () => {
                     </li>
                   ))}
                 </ul>
-              </GlowCard>
-            </div>
-          ))}
+              </>
+            );
+
+            return (
+              <div
+                key={service.title}
+                className="slide-up group"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                {isMobile ? (
+                  <div className="h-full p-8 glass rounded-2xl">
+                    {cardContent}
+                  </div>
+                ) : (
+                  <GlowCard customSize={true} className="h-full p-8">
+                    {cardContent}
+                  </GlowCard>
+                )}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
