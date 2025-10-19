@@ -46,23 +46,24 @@ const About = () => {
                 Hoje, somos uma equipe de 15 especialistas dedicados a criar soluções 
                 que fazem a diferença.
               </p>
-              
-              <div className="glass p-6 rounded-2xl">
-                <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
-                  <Target className="w-5 h-5 text-primary" />
-                  Nossa Missão
-                </h3>
-                <p className="text-foreground/70">
-                  Democratizar o acesso a tecnologia de ponta, criando websites 
-                  e aplicações que não apenas impressionam visualmente, mas entregam 
-                  resultados concretos para nossos clientes.
-                </p>
-              </div>
             </div>
           </div>
 
           {/* Right Content - Values */}
-          <div className="grid grid-cols-2 gap-6 slide-up relative z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 slide-up relative z-10">
+            <div
+              className="glass p-6 rounded-2xl hover:scale-105 transition-transform duration-300 sm:col-span-2"
+            >
+              <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
+                <Target className="w-5 h-5 text-primary" />
+                Nossa Missão
+              </h3>
+              <p className="text-foreground/70">
+                Democratizar o acesso a tecnologia de ponta, criando websites 
+                e aplicações que não apenas impressionam visualmente, mas entregam 
+                resultados concretos para nossos clientes.
+              </p>
+            </div>
             {values.map((value, index) => (
               <div
                 key={value.title}

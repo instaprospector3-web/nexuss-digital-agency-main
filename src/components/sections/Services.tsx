@@ -96,11 +96,11 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex overflow-x-auto space-x-6 pb-6 -mx-4 px-4 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-x-0 lg:mx-0 lg:px-0 snap-x snap-mandatory">
           {services.map((service, index) => (
             <div
               key={service.title}
-              className="slide-up"
+              className="slide-up snap-start flex-shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-auto"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <GlowCard
