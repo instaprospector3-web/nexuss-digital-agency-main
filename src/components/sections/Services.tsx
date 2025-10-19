@@ -96,18 +96,18 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="flex overflow-x-auto space-x-6 pb-6 -mx-4 px-4 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-x-0 lg:mx-0 lg:px-0 snap-x snap-mandatory">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div
               key={service.title}
-              className="slide-up snap-start flex-shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-auto"
+              className="slide-up group"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <GlowCard
                 customSize={true}
                 className="h-full p-8"
               >
-                <div className="w-14 h-14 rounded-xl bg-gradient-primary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-14 h-14 rounded-xl bg-gradient-primary flex items-center justify-center mb-6 hover:group-hover:scale-110 transition-transform">
                   <service.icon className="w-7 h-7 text-white" />
                 </div>
 
